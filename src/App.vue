@@ -24,10 +24,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { IFInfiniteScrollParams, infiniteScroll, IFInfiniteScrollShowArea} from '../packages/XInfiniteScroll/src';
+import { type IFInfiniteScrollParams, infiniteScroll} from '../packages/XInfiniteScroll/src';
 
 const curAmount = ref(1000);
-function handleAmountChange(event) {
+function handleAmountChange(event: any) {
   const value = event.target.value;
   if (!isNaN(value) && value > 0) {
     curAmount.value = value;
@@ -49,7 +49,11 @@ const scrollParams = computed<IFInfiniteScrollParams>(() => {
   };
 });
 
-const { wrapData, scrollTop, showArea} = infiniteScroll(
+const {
+  wrapData,
+  scrollTop,
+  showArea
+} = infiniteScroll(
   'scroll-area',
   scrollParams,
   1000

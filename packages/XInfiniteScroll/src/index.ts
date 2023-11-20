@@ -1,4 +1,12 @@
-import {nextTick, onBeforeMount, ref, watch, Ref, reactive, onBeforeUnmount} from 'vue';
+import {
+  nextTick,
+  onBeforeMount,
+  ref,
+  watch,
+  type Ref,
+  reactive,
+  onBeforeUnmount
+} from 'vue';
 
 export interface IFInfiniteScrollData {
   value?: any;
@@ -54,8 +62,8 @@ export function infiniteScroll(
     end: 0 + offset
   });
 
-  const debounce = function (callback, interval) {
-    let timer = null;
+  const debounce = function (callback: Function, interval: number) {
+    let timer: any = null;
     // 清除计时
     function cancel() {
       if(timer !== null){
@@ -63,7 +71,7 @@ export function infiniteScroll(
       }
     }
     // 防抖
-    function debounced(event) {
+    function debounced(event: any) {
       cancel();
       timer = setTimeout(callback(event), interval);
     }
@@ -71,7 +79,7 @@ export function infiniteScroll(
     return debounced;
   }
 
-  const debounceScroll = debounce((event) => {
+  const debounceScroll = debounce((event: any) => {
     curScrollTop.value = event.target?.scrollTop || 0;
     showArea.begin = curScrollTop.value - offset;
     showArea.end = curScrollTop.value + curAreaHeight.value + offset;
