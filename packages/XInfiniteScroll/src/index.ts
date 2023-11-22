@@ -7,6 +7,7 @@ import {
   reactive,
   onBeforeUnmount
 } from 'vue';
+import { debounce } from 'lodash-es';
 
 export interface IFInfiniteScrollData {
   value?: any;
@@ -61,23 +62,6 @@ export function infiniteScroll(
     begin: 0,
     end: 0 + offset
   });
-
-  const debounce = function (callback: Function, interval: number) {
-    let timer: any = null;
-    // 清除计时
-    function cancel() {
-      if(timer !== null){
-        clearTimeout(timer);
-      }
-    }
-    // 防抖
-    function debounced(event: any) {
-      cancel();
-      timer = setTimeout(callback(event), interval);
-    }
-    debounced.cancel = cancel;
-    return debounced;
-  }
 
   const debounceScroll = debounce((event: any) => {
     curScrollTop.value = event.target?.scrollTop || 0;

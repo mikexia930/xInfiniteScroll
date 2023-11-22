@@ -5,7 +5,7 @@
 >
 [Demo](https://mikexia930.github.io/xInfiniteScroll/)
 ## 版本
-- v1.0.0
+- v1.0.1
 
 ## 基于
 - Vue2/3
